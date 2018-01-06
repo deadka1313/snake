@@ -69,6 +69,7 @@ public class GameField extends JPanel implements ActionListener {
         dot = iid.getImage();
     }
 
+    //
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -78,12 +79,15 @@ public class GameField extends JPanel implements ActionListener {
                 g.drawImage(dot, x[i], y[i], this);
             }
         } else {
-            String str = "Game Over";
+            String gameOver = "Game Over";
+            Font f = new Font("Arial", Font.BOLD, 26);
+            g.setFont(f);
             g.setColor(Color.white);
-            g.drawString(str, 125, SIZE / 2);
+            g.drawString(gameOver, 80, SIZE / 2);
         }
     }
 
+    //Движение змейки
     public void move() {
         for (int i = dots; i > 0; i--) {
             x[i] = x[i - 1];
@@ -105,6 +109,7 @@ public class GameField extends JPanel implements ActionListener {
         checkCollisions();
     }
 
+    //Увеличение змейки, если скушали яблоко
     public void checkApple() {
         if (x[0] == appleX && y[0] == appleY) {
             dots++;
@@ -112,6 +117,7 @@ public class GameField extends JPanel implements ActionListener {
         }
     }
 
+    //Проверка на столкновения
     public void checkCollisions() {
         for (int i = dots; i > 0; i--) {
             if (i > 4 && x[0] == x[i] && y[0] == y[i]) {
@@ -133,16 +139,17 @@ public class GameField extends JPanel implements ActionListener {
         }
     }
 
+    //Отрисовка яблока и движения змейки
     @Override
     public void actionPerformed(ActionEvent e) {
         if (inGame) {
             checkApple();
             move();
-
         }
         repaint();
     }
 
+    // Обработка нажатия клавиш движния и паузы
     class FieldKeyListener extends KeyAdapter {
         @Override
         public void keyPressed(KeyEvent e) {
