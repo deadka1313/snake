@@ -79,9 +79,7 @@ public class GameField extends JPanel implements ActionListener {
             }
         } else {
             String str = "Game Over";
-            //Font f = new Font("Arial", 14, Font.BOLD);
             g.setColor(Color.white);
-            //g.setFont(f);
             g.drawString(str, 125, SIZE / 2);
         }
     }
@@ -104,6 +102,7 @@ public class GameField extends JPanel implements ActionListener {
             y[0] += DOT_SIZE;
         }
         checkKey = true;
+        checkCollisions();
     }
 
     public void checkApple() {
@@ -138,7 +137,6 @@ public class GameField extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (inGame) {
             checkApple();
-            checkCollisions();
             move();
 
         }
@@ -194,27 +192,7 @@ public class GameField extends JPanel implements ActionListener {
                     break;
 
             }
-            /*if (key == KeyEvent.VK_LEFT && !right) {
-                left = true;
-                up = false;
-                down = false;
-            }
-            if (key == KeyEvent.VK_RIGHT && !left) {
-                right = true;
-                up = false;
-                down = false;
-            }
-            if (key == KeyEvent.VK_UP && !down) {
-                right = false;
-                up = true;
-                left = false;
-            }
-            if (key == KeyEvent.VK_DOWN && !up) {
-                right = false;
-                down = true;
-                left = false;
-            }*/
-            //if (key == KeyEvent.VK_P)
+
         }
     }
 }
